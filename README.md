@@ -1,4 +1,4 @@
-# Meson sekelton code
+# Meson skeleton code
 
 This repository contains a [Meson](https://mesonbuild.com/) skeleton. It is used in the [High-Performance Computiong:  MD
 with C++
