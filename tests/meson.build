@@ -2,6 +2,7 @@ google_test = dependency('gtest')
 
 test_sources = [
   'test_hello_world.cpp',
+  'test_milestone02.cpp',
   'gtest_mpi_main.cpp'
 ]
 
