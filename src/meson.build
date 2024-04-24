@@ -1,6 +1,6 @@
 lib_sources = [  # All source files (excluding headers)
     'hello.cpp'
-]
+]   
 
 lib = static_library(
     'lib',  # Unique name
