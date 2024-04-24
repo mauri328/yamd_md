@@ -1,6 +1,6 @@
-#include "verlet.h"
+#include "../milestones/02/verlet.h"
 #include <gtest/gtest.h>
 
-TEST() {
+TEST(Milestone02Test, BasicAssertions) {
     // todo
 }
