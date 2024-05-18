@@ -26,10 +26,10 @@ void verlet_step2(double &vx, double &vy, double &vz, double fx, double fy, doub
 
 // MILESTONE 03
 
-void verlet_step1(Eigen::Array3Xd &positions, Eigen::Array3Xd &velocities, const Eigen::Array3Xd &forces, double timestep) {
+void verlet_step1(Positions_t &positions, Velocities_t &velocities, const Forces_t &forces, double timestep) {
     // ... implement Verlet step1 here ...
 }
 
-void verlet_step2(Eigen::Array3Xd &velocities, const Eigen::Array3Xd &forces, double timestep) {
+void verlet_step2(Velocities_t &velocities, const Forces_t &forces, double timestep) {
     // ... implement Verlet step2 here ...
 }

@@ -1,8 +1,7 @@
 #ifndef __VERLET_H
 #define __VERLET_H
 
-#include <Eigen/Dense>
-
+#include "types.h"
 
 // MILESTONE 02
 
@@ -27,13 +26,13 @@ void verlet_step2(double &vx, double &vy, double &vz, double fx, double fy, doub
  * Predict velocities v(t+Δt/2) and positions r(t+Δt).
  * Update positions array "positions" and velocities array "velocities".
  */
-void verlet_step1(Eigen::Array3Xd &positions, Eigen::Array3Xd &velocities, const Eigen::Array3Xd &forces, double timestep);
+void verlet_step1(Positions_t &positions, Velocities_t &velocities, const Forces_t &forces, double timestep);
 
 /**
  * Apply step two of the Velocity-Verlet integration algorithm, the corrector step, to each atom in an array.
  * Correct the previously predicted velocities -> v(t+Δt). Update velocities array "velocities".
  */
-void verlet_step2(Eigen::Array3Xd &velocities, const Eigen::Array3Xd &forces, double timestep);
+void verlet_step2(Velocities_t &velocities, const Forces_t &forces, double timestep);
 
 
 #endif  // __VERLET_H
