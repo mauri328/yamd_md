@@ -26,10 +26,18 @@ void verlet_step2(double &vx, double &vy, double &vz, double fx, double fy, doub
 
 // MILESTONE 03
 
-void verlet_step1(Positions_t &positions, Velocities_t &velocities, const Forces_t &forces, double timestep) {
-    // ... implement Verlet step1 here ...
+void verlet_step1(Positions_t &positions, Velocities_t &velocities, const Forces_t &forces, const double mass, double timestep) {
+    // update velocities -> v(t+Δt/2)
+    velocities += 0.5 * forces * timestep / mass;
+    // update positions -> r(t+Δt)
+    positions += 0.5 * forces * timestep / mass;
 }
 
-void verlet_step2(Velocities_t &velocities, const Forces_t &forces, double timestep) {
-    // ... implement Verlet step2 here ...
+void verlet_step2(Velocities_t &velocities, const Forces_t &forces, const double mass, double timestep) {
+    // correct velocity predictions -> v(t+Δt)
+    velocities += 0.5 * forces * timestep / mass;
+}
+
+void update_force(Forces_t &forces) {
+    return;  // in this case, no update of force since we are still modeling constant forces
 }

@@ -26,13 +26,17 @@ void verlet_step2(double &vx, double &vy, double &vz, double fx, double fy, doub
  * Predict velocities v(t+Δt/2) and positions r(t+Δt).
  * Update positions array "positions" and velocities array "velocities".
  */
-void verlet_step1(Positions_t &positions, Velocities_t &velocities, const Forces_t &forces, double timestep);
+void verlet_step1(Positions_t &positions, Velocities_t &velocities, const Forces_t &forces, const double mass, double timestep);
 
 /**
  * Apply step two of the Velocity-Verlet integration algorithm, the corrector step, to each atom in an array.
  * Correct the previously predicted velocities -> v(t+Δt). Update velocities array "velocities".
  */
-void verlet_step2(Velocities_t &velocities, const Forces_t &forces, double timestep);
+void verlet_step2(Velocities_t &velocities, const Forces_t &forces, const double mass, double timestep);
 
+/**
+ * Update the forces acting on atoms in an array.
+*/
+void update_force(Forces_t &forces);
 
 #endif  // __VERLET_H
