@@ -34,12 +34,24 @@ int main(int argc, char *argv[]) {
         mass = 1;
     }
 
+    // solution matrices
+    Positions_t positions_analytical(nb_dims, nb_atoms);
+    Velocities_t velocities_analytical(nb_dims, nb_atoms);
+    for (int i = 0; i < nb_atoms; i++) {
+        positions_analytical(2, i) = 9.999999999999999999999999999995096675; // z
+        velocities_analytical(2, i) = -4.903325e-15; // z
+    }
+
     verlet_step1(positions, velocities, forces, mass, timestep);
+
+    std::cout << positions_analytical << std::endl;
+    std::cout << velocities_analytical << std::endl;
+
     update_force(forces);
     verlet_step2(velocities, forces, mass, timestep);
 
-    std::cout << positions << std::endl;
-    std::cout << velocities << std::endl;
-    std::cout << velocities.row(0) << std::endl;
-    std::cout << forces << std::endl;
+    // std::cout << positions << std::endl;
+    // std::cout << velocities << std::endl;
+    // std::cout << velocities.row(0) << std::endl;
+    // std::cout << forces << std::endl;
 }

@@ -1,7 +1,9 @@
 #include "verlet.h"
-// #include "types.h"
 #include <gtest/gtest.h>
-// #include <Eigen/Dense>
+
+// references
+// https://eigen.tuxfamily.org/dox/classEigen_1_1DenseBase.html#ae8443357b808cd393be1b51974213f9c
+
 
 
 // hyperparameters
@@ -36,7 +38,7 @@ void resetProperties() {
     }
 }
 
-TEST(Milestone03, StepOneUnchangedProperties) {
+TEST(Milestone03, UnchangedProperties) {
     // initialize values
     resetProperties();
 
@@ -54,7 +56,7 @@ TEST(Milestone03, StepOneUnchangedProperties) {
         verlet_step2(velocities, forces, mass, timestep);
     }
 
-    // x and y components of position and velocity, forces and mass, should remain unchanged
+    // x and y components of position and velocity, and forces and mass, should remain unchanged
     EXPECT_EQ(positions.row(0).isApprox(pos_copy_x), true);
     EXPECT_EQ(positions.row(1).isApprox(pos_copy_y), true);
     EXPECT_EQ(velocities.row(0).isApprox(vel_copy_x), true);
@@ -64,17 +66,29 @@ TEST(Milestone03, StepOneUnchangedProperties) {
     EXPECT_EQ(mass, mass_copy);
 }
 
+
+// change to multiple steps
 TEST(Milestone03, StepOneConstantGravity) {
     // initialize values
     resetProperties();
 
+    // solution matrices
+    Positions_t positions_analytical(nb_dims, nb_atoms);
+    Velocities_t velocities_analytical(nb_dims, nb_atoms);
+    for (int i = 0; i < nb_atoms; i++) {
+        positions_analytical(2, i) = 9.999999999999999999999999999995096675; // z
+        velocities_analytical(2, i) = -4.903325e-15; // z
+    }
+
     verlet_step1(positions, velocities, forces, mass, timestep);
 
     // after step one, only z and vz should have changed -> vz uncorrected
-    // EXPECT_NEAR(z, 9.999999999999999999999999999995096675, 1e-6);
-    // EXPECT_NEAR(vz, -4.903325e-15, 1e-6);
+    EXPECT_EQ(positions.row(2).isApprox(positions_analytical.row(2), 1e-6), true);
+    EXPECT_EQ(velocities.row(2).isApprox(velocities_analytical.row(2), 1e-6), true);
 }
 
+
+// todo and change to multiple steps
 TEST(Milestone02Test, StepTwoConstantGravity) {
     // initialize values
     resetProperties();
