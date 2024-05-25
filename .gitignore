@@ -15,6 +15,7 @@
 # subprojects (leads to build failure)
 subprojects/eigen-3.4.0/
 subprojects/googletest-1.14.0/
+subprojects/packagecache/
 
 
 # User-specific stuff
