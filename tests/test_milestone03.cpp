@@ -67,7 +67,6 @@ TEST(Milestone03, UnchangedProperties) {
 }
 
 
-// change to multiple steps
 TEST(Milestone03, StepOneConstantGravity) {
     // initialize values
     resetProperties();
@@ -88,15 +87,27 @@ TEST(Milestone03, StepOneConstantGravity) {
 }
 
 
-// todo and change to multiple steps
 TEST(Milestone02Test, StepTwoConstantGravity) {
     // initialize values
     resetProperties();
 
-    verlet_step1(positions, velocities, forces, mass, timestep);
-    update_force(forces);
-    verlet_step2(velocities, forces, mass, timestep);
+    for (int i = 0; i < nb_steps; ++i) {
+        verlet_step1(positions, velocities, forces, mass, timestep);
+        update_force(forces);
+        verlet_step2(velocities, forces, mass, timestep);
+    }
 
-    // after step two, vz should be corrected
-    // EXPECT_NEAR(vz, -9.80665e-15, 1e-6);
+    // solution matrices
+    Positions_t positions_analytical(nb_dims, nb_atoms);
+    Velocities_t velocities_analytical(nb_dims, nb_atoms);
+    for (int i = 0; i < nb_atoms; i++) {
+        positions_analytical(2, i) = 9.999999999999999999999995096675; // z
+        velocities_analytical(2, i) = -9.80665e-12; // z
+    }
+
+    // z position after nb_steps
+    EXPECT_EQ(positions.row(2).isApprox(positions_analytical.row(2), 1e-6), true);
+
+    // after step two, the vz should be corrected
+    EXPECT_EQ(velocities.row(2).isApprox(velocities_analytical.row(2), 1e-6), true);
 }

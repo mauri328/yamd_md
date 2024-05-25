@@ -70,6 +70,7 @@ TEST(Milestone02Test, StepTwoConstantGravity) {
     EXPECT_NEAR(vz, -9.80665e-15, 1e-6);
 }
 
+
 TEST(Milestone02Test, TestAfterMultipleIterations) {
     int nb_steps = 1e5;
     // atom properties
