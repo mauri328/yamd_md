@@ -2,7 +2,7 @@
 #define __TYPES_H
 
 // #include <Eigen/Dense>
-// #include <eigen-3.4.0/Eigen/Dense>
+// changed because otherwise Eigen/Dense is not found
 #include "../subprojects/eigen-3.4.0/Eigen/Dense"
 
 using Positions_t = Eigen::Array3Xd;
