@@ -13,8 +13,9 @@
 
 
 # subprojects (leads to build failure)
-subprojects/eigen-3.4.0/
-subprojects/googletest-1.14.0/
+# subprojects/eigen-3.4.0/
+# subprojects/googletest-1.14.0/
+# or not?
 
 
 # User-specific stuff
