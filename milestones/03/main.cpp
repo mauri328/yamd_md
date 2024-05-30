@@ -8,7 +8,7 @@ int main(int argc, char *argv[]) {
     // hyperparameters
     int nb_dims = 3;
     int nb_atoms = 10;
-    int nb_steps = 1000;
+    // int nb_steps = 1000;
     double timestep = 1e-15;  // 1 femto second
 
     // init atoms
