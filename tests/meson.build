@@ -5,6 +5,7 @@ test_sources = [
 #   'test_milestone02.cpp',
 #   'test_milestone03.cpp',
   'test_milestone04.cpp',
+  'test_lj_direct_summation.cpp',
   'gtest_mpi_main.cpp'
 ]
 

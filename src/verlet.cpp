@@ -41,3 +41,23 @@ void verlet_step2(Velocities_t &velocities, const Forces_t &forces, const double
 void update_force(Forces_t &forces) {
     return;  // in this case, no update of force since we are still modeling constant forces
 }
+
+
+// milestone 04
+
+void verlet_step1(Atoms &atoms, const double mass, double timestep) {
+    // update velocities -> v(t+Δt/2)
+    atoms.velocities += 0.5 * atoms.forces * timestep / mass;
+    // update positions -> r(t+Δt)
+    atoms.positions += 0.5 * atoms.forces * timestep / mass;
+}
+
+void verlet_step2(Atoms &atoms, const double mass, double timestep) {
+    // correct velocity predictions -> v(t+Δt)
+    atoms.velocities += 0.5 * atoms.forces * timestep / mass;
+}
+
+double lj_direct_summation(Atoms &atoms, double epsilon, double sigma) {
+    // todo: implement Lennard-Jones-Potential
+    return 1.0;
+}
